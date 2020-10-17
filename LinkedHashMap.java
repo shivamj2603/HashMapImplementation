@@ -68,4 +68,14 @@ public class LinkedHashMap<E, V> {
 	public String toString() {
 		return "MyLinkedHashMap List{" + bucketArray + "}";
 	}
+	public void remove(E key) {
+		int index = this.getBucketIndex(key);
+		LinkedList<E> list = this.bucketArray.get(index);
+		if (list == null) {
+			System.out.println("The key does not exist");
+			return;
+		}
+		HashNode<E, V> hashNode = (HashNode) list.search(key);
+		list.remove(hashNode.getKey());
+	}
 }
